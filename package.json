@@ -1,0 +1,16 @@
+{
+  "name": "geektool-forecast.io-weather",
+  "description": "A geeklet for the weather using forecast.io.",
+  "version": "0.0.1",
+  "author": "Nick Roberts",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nickroberts/geektool-forecast.io-weather"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-watch": "~0.5.3"
+  }
+}
+
