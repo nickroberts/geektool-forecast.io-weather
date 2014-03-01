@@ -2,57 +2,67 @@
 
 export PATH=/usr/local/bin:$PATH
 
-# test to make sure the arguments are correct
-test $# -ne 4 && echo "Usage: `basename $0` LATITUDE LONGITUDE TITLE LIGHT/DARK" && exit $E_BADARGS
+export latitude="37.322998"
+export longitude="-122.032182"
+export title="Cupertino, CA"
+export opacity=.65
+export color="#ffffff"
+export font="Helvetica"
+export units="us"
+
+# get the options
+while getopts :c:o:f:u: option
+do
+    case "${option}" in
+
+    c) color=$OPTARG;;
+    o) opacity=$OPTARG;;
+    f) font=$OPTARG;;
+    u) units=$OPTARG;;
+    ?)
+        echo "You passed an illegal option. The available options are -c COLOR, -o OPACITY, -f FONT and -u UNITS."
+        exit 0;;
+    esac
+done
+
+# remove the options to leave us with the latitude and longitude
+shift $((OPTIND - 1))
+
+if [ $# -gt 0 ]; then
+    test $# -ne 3 && echo "Usage: `basename $0` [options] LATITUDE LONGITUDE TITLE" && exit $E_BADARGS
+fi
 
 hash /usr/local/bin/phantomjs &> /dev/null
 if [ $? -eq 1 ]; then
-    echo "phantomjs not found."
-    exit 1
-fi
-
-hash /usr/local/bin/gs &> /dev/null
-if [ $? -eq 1 ]; then
-    echo "ghostscript not found."
+    echo "PhantomJS was not found. Please make sure it is installed."
     exit 1
 fi
 
 hash /usr/local/bin/convert &> /dev/null
 if [ $? -eq 1 ]; then
-    echo "imagemagick not found."
+    echo "ImageMagick was not found. Please make sure it is installed."
     exit 1
-fi
-
-export LIGHT=""
-
-# checking to make sure if the 4th argument is LIGHT or DARK
-if [[ $4 == "LIGHT" ]]; then
-    export LIGHT="-negate"
-elif [[ $4 == "DARK" ]]; then
-    echo ""
-else
-    echo "Argument #4 must be either LIGHT or DARK"
-    exit $E_BADARGS
 fi
 
 cd `dirname $0`
 
+# set the variables
+latitude=$1
+longitude=$2
+title=$3
+
 # rendering forecast.io's html5 page using phantomjs
-phantomjs forecast.io.js "$1" "$2" "$3" "temp/weather.png"
+phantomjs forecast.io.js "$latitude" "$longitude" "$title" "$color" "$font" "$units" "temp/weather.png"
 
 if  test -s temp/weather.png
 then
-    # correcting the background
-    echo "Correcting the background."
-    convert png:temp/weather.png -fuzz 50% -transparent white png:temp/weather.png
-    echo "Finished correcting the background."
-    echo "Converting the color to LIGHT or DARK."
-    # convert it to a light background
-    convert png:temp/weather.png $LIGHT png:weather.png
-    echo "Finished converting the weather image color."
+    # change the color and opacity
+    echo "Rendering the color and opacity."
+    convert png:temp/weather.png -fill $color -fuzz 100% -opaque '#888' -channel Alpha -evaluate multiply $opacity png:weather.png
+    echo "Finished rendering the color and opacity."
     echo "The weather image has been rendered successfully."
 else
-    echo "There was an issue rendering the weather image: phantomjs did not render the weather image correctly."
+    echo "There was an issue rendering the weather image: PhantomJS did not render the weather image correctly."
 fi
 
 rm -Rf temp
