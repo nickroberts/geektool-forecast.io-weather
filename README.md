@@ -69,8 +69,20 @@ I've added the font, color, opacity and units options that forecast.io allows.
 
 ### Screenshots
 
-Light:
-![Light Screenshot](light.png)
+Transparent White:
+![Transparent White](transparentWhite.png)
 
-Dark:
-![Dark Screenshot](dark.png)
+Transparent White Colorful:
+![Transparent White Colorful](transparentWhiteColorful.png)
+
+Very Transparent White:
+![Very Transparent White](veryTransparentWhite.png)
+
+Transparent Orange:
+![Transparent Orange](transparentOrange.png)
+
+Opaque Orange:
+![paque Orange](opaqueOrange.png)
+
+Opaque Light Gray:
+![Opaque Light Gray](opaqueLightGray.png)
