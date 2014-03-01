@@ -25,13 +25,33 @@ You can use the site [itouchmap](http://itouchmap.com/latlong.html) to find out 
 
 Replace the arguments with your own values.
 
-`<your installation directory>/forecast.io.sh <latitude> longitude "<title>" <LIGHT/DARK>`
+`<your installation directory>/forecast.io.sh [-c COLOR -o OPACITY -f FONT -u UNITS] LATITUDE LONGITUDE TITLE`
+
+#### List of available options:
+
+##### Color:
+You can use any hex color code value here. You might be able to use another type of color value, such as rgb, but this is untested. I would suggest staying with hex values.
+
+##### Opacity:
+Any value from 0.0 to 1.0. For a 35% opacity level, use the value to .35 to get the desired effect.
+
+##### Font:
+Should be able to use any font that is installed on your system, as PhantomJS should load it.
+
+*Note: this isn't tested*
+
+##### Units:
+Can be one of the following:
+
+* *us* for Fahrenheit and mph
+* *uk* for Celsius and mph
+* *ca* for Celsius and km/h
+* *si* for Celsius and m/s
+
 
 Set the script to refresh every 600s. (you can make this whatever you want)
 
 Check the override text so that there is no text shown on the screen.
-
-*Note: the 4th argument has to be either "LIGHT" or "DARK" depending on which version you would like.*
 
 ### Create an image Geektool Geeklet:
 
@@ -39,13 +59,13 @@ Update the image URL:
 
 `file://localhost/<your installation directory>/weather.png`
 
-Set the image to refresh every 600s. (you can make this whatever you want)
+Set the image to refresh every 300s. (you can make this whatever you want)
 
 *Note: don't forget the file://localhost part, or else it will not find the image. You can also browse for the file.*
 
 ### You're now in business!
 
-In the future, I will look to add color customization, and perhaps font customization, and any other options that forecast.io has.
+I've added the font, color, opacity and units options that forecast.io allows.
 
 ### Screenshots
 
