@@ -2,6 +2,20 @@
 
 This is a Geeklet that will display the weather using the forecast.io embedable code. It uses phantomjs and imagemagick to render an image to display.
 
+##### Table of Contents  
+[Headers](#headers)  
+[Emphasis](#emphasis)  
+[Lists](#lists)  
+[Links](#links)  
+[Images](#images)  
+[Code and Syntax Highlighting](#code)  
+[Tables](#tables)  
+[Blockquotes](#blockquotes)  
+[Inline HTML](#html)  
+[Horizontal Rule](#hr)  
+[Line Breaks](#lines)  
+[Youtube videos](#videos)
+
 ## Installation
 
 Make sure you have a few things installed:
@@ -46,3 +60,11 @@ Set the image to refresh every 600s. (you can make this whatever you want)
 ### You're now in business!
 
 In the future, I will look to add color customization, and perhaps font customization, and any other options that forecast.io has.
+
+### Screenshots
+
+Light:
+![Light Screenshot](light.png)
+
+Dark:
+![Dark Screenshot](dark.png)
