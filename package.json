@@ -1,7 +1,7 @@
 {
   "name": "geektool-forecast.io-weather",
   "description": "A geeklet for the weather using forecast.io.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Nick Roberts",
   "repository": {
     "type": "git",
