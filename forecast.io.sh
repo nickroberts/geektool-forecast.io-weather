@@ -47,9 +47,11 @@ fi
 cd `dirname $0`
 
 # set the variables
-latitude=$1
-longitude=$2
-title=$3
+if [ $# -gt 0 ]; then
+    latitude=$1
+    longitude=$2
+    title=$3
+fi
 
 # rendering forecast.io's html5 page using phantomjs
 phantomjs forecast.io.js "$latitude" "$longitude" "$title" "$color" "$font" "$units" "temp/weather.png"
