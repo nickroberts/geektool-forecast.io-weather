@@ -35,6 +35,8 @@ else
     exit $E_BADARGS
 fi
 
+cd `dirname $0`
+
 # rendering forecast.io's html5 page using phantomjs
 phantomjs forecast.io.js "$1" "$2" "$3" "temp/weather.png"
 
